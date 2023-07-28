@@ -1,0 +1,6 @@
+Django
+jinja2
+psycopg2-binary
+sqlparse
+tzdata
+typing_extensions
