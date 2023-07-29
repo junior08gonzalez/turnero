@@ -1,2 +1,2 @@
 # turnero
-Aplicacion para gestionar los clientes de un hospital
+Aplicacion para gestionar los clientes, doctores y servicios hospitalarios.!!!
