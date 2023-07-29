@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Cliente
+from .models import Cliente, Servicio
 from django.contrib import messages
 # Create your views here.
 from django.contrib.auth.decorators import login_required
@@ -33,6 +33,23 @@ def edicionCliente(request, codigo):
     cliente = Cliente.objects.get(codigo= codigo)
     return render(request, 'edicionCliente.html', {'cliente': cliente})
 
+def edicionServicio(request, codigo):
+    servicio = Servicio.objects.get(codigo= codigo)
+    return render(request, 'edicionServicio.html', {'servicio': servicio})
+
+def editarServicio(request):
+    codigo = request.POST.get('textcodigo', False)
+    nombre = request.POST.get('textnombre', False)
+    sala = request.POST.get('textsala', False)
+    disponible = request.POST.get('textdisponible', False)
+    servicio = Servicio.objects.get(codigo=codigo)
+    servicio.nombre = nombre
+    servicio.sala =sala
+    # servicio.dispobible = disponible
+    servicio.save()
+    messages.success(request, '!Servicio Actualizado!')
+    return redirect('/')
+
 def editarCliente(request):
     codigo = request.POST.get('textcodigo', False)
     nombre = request.POST.get('textnombre', False)
@@ -55,3 +72,9 @@ def eliminarCliente(request, codigo):
     cliente.delete()
     messages.success(request, '!Cliente Eliminado!')
     return redirect('/')
+
+def ListarServicio(request):
+    # nro_servicios = Servicio.objects.count()
+    # personas = Persona.objects.all()
+    servicios = Servicio.objects.order_by('nombre')
+    return render(request, 'listaservicio.html', {'servicios':servicios})

@@ -1,0 +1,35 @@
+{% extends "./base.html" %}
+{% block title %}Listado de Servicios {% endblock %}
+
+{% block body %}
+<div class="table-responsive">
+                <h1>Listado de Servicios</h1>
+                <table class="table table-striped py-2">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Codigo</th>
+                            <th>Nombre</th>
+                            <th>Sala</th>
+                            <th>Disponible</th>
+                            <th>Doctor</th>
+                            <th>Opcion</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for c in servicios%}
+                        <tr>
+                            <td>{{forloop.counter}}</td>
+                            <td>{{c.codigo}}</td>
+                            <td>{{c.nombre}}</td>
+                            <td>{{c.sala}}</td>
+                            <td>{{c.dispobible}}</td>
+                            <td>{{c.doctor}}</td>
+                            <td><a href="edicionServicio/{{c.codigo}}" class="btn btn-info">Editar</a></td>
+<!--                            <td><a href="eliminarCliente/{{c.codigo}}" class="btn btn-danger btnEliminar">Eliminar</a></td>-->
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+{% endblock %}
